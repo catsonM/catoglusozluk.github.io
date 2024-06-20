@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+{% if top_entries %}
+    <h3>Top 10 Entries</h3>
+    <ul>
+        {% for entry in top_entries %}
+            <li id="entry-{{ entry.id }}">
+                <div class="entry">
+                    <div class="entry-meta">
+                        <a class="entry-number" href="#entry-{{ entry.id }}">#{{ entry.sequence }}</a>
+                        <a class="entry-author" href="{{ url_for('user_profile', username=entry.user.username) }}">{{ entry.user.username }}</a>
+                        <span class="entry-timestamp">{{ entry.timestamp.strftime('%Y-%m-%d %H:%M') }}</span>
+                    </div>
+                    <p>{{ entry.content }}</p>
+                    <div class="entry-actions">
+                        <form action="{{ url_for('like_entry', entry_id=entry.id) }}" method="post">
+                            <button type="submit">👍</button> ({{ entry.likes }})
+                        </form>
+                        <form action="{{ url_for('dislike_entry', entry_id=entry.id) }}" method="post">
+                            <button type="submit">👎</button> ({{ entry.dislikes }})
+                        </form>
+                        {% if current_user.is_authenticated and current_user.username in owner_users %}
+                            <form action="{{ url_for('delete_entry', entry_id=entry.id) }}" method="post">
+                                <button type="submit" class="delete-button">Sil</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('post', post_id=post.id, show_all=True) }}">Daha fazlasını görüntüle</a>
+{% else %}
+    <ul>
+        {% for entry in entries %}
+            <li id="entry-{{ entry.id }}">
+                <div class="entry">
+                    <div class="entry-meta">
+                        <a class="entry-number" href="#entry-{{ entry.id }}">#{{ entry.sequence }}</a>
+                        <a class="entry-author" href="{{ url_for('user_profile', username=entry.user.username) }}">{{ entry.user.username }}</a>
+                        <span class="entry-timestamp">{{ entry.timestamp.strftime('%Y-%m-%d %H:%M') }}</span>
+                    </div>
+                    <p>{{ entry.content }}</p>
+                    <div class="entry-actions">
+                        <form action="{{ url_for('like_entry', entry_id=entry.id) }}" method="post">
+                            <button type="submit">👍</button> ({{ entry.likes }})
+                        </form>
+                        <form action="{{ url_for('dislike_entry', entry_id=entry.id) }}" method="post">
+                            <button type="submit">👎</button> ({{ entry.dislikes }})
+                        </form>
+                        {% if current_user.is_authenticated and current_user.username in owner_users %}
+                            <form action="{{ url_for('delete_entry', entry_id=entry.id) }}" method="post">
+                                <button type="submit" class="delete-button">Sil</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form action="{{ url_for('post', post_id=post.id) }}" method="post">
+    <textarea name="content" placeholder="Yorum yap..."></textarea>
+    <button type="submit">Gönder</button>
+</form>
+{% endblock %}

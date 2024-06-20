@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Catoglu Sozluk{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1><a href="{{ url_for('home') }}">Catoglu Sozluk</a></h1>
+            {% if current_user.is_authenticated %}
+                <nav>
+                    <a href="{{ url_for('new_post') }}">New Post</a>
+                    <a href="{{ url_for('user_profile', username=current_user.username) }}">Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </nav>
+            {% else %}
+                <nav>
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                </nav>
+            {% endif %}
+        </div>
+        <div class="header-right">
+            <form action="{{ url_for('search') }}" method="GET">
+                <input type="text" name="q" placeholder="başlık, #entry, @yazar" required>
+                <button type="submit">Ara</button>
+            </form>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Gezin</h2>
+            <nav>
+                <a href="{{ url_for('home') }}">Gündem</a> | 
+                <a href="{{ url_for('poop_baslik') }}">Poop Başlık</a>
+            </nav>
+            <ul>
+                {% if posts %}
+                    {% for post in posts %}
+                        <li>
+                            <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                            <span class="entry-count">({{ post.entries|length }})</span>
+                        </li>
+                    {% endfor %}
+                {% elif recent_posts %}
+                    {% for post, entry_count in recent_posts %}
+                        <li>
+                            <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                            <span class="entry-count">({{ entry_count }})</span>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

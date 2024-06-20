@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Profili Düzenle</h2>
+<form method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" value="{{ user.email }}" required>
+    
+    <label for="about_me">About Me</label>
+    <textarea name="about_me" id="about_me">{{ user.about_me }}</textarea>
+    
+    <label for="age">Age</label>
+    <input type="number" name="age" id="age" value="{{ user.age }}">
+    
+    <label for="motto">Motto</label>
+    <textarea name="motto" id="motto">{{ user.motto }}</textarea>
+    
+    <button type="submit">Güncelle</button>
+</form>
+{% endblock %}

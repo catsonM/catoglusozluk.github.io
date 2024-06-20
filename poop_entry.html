@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Poop Entry - Catoglu Sozluk{% endblock %}
+
+{% block content %}
+<h2>Poop Entry</h2>
+<ul>
+    {% for entry in recent_entries %}
+        <li>
+            <div class="entry">
+                <div class="entry-meta">
+                    <span class="entry-number">#{{ entry.sequence }}</span>
+                    <a class="entry-author" href="{{ url_for('user_profile', username=entry.user.username) }}">{{ entry.user.username }}</a>
+                    <span class="entry-timestamp">{{ entry.timestamp.strftime('%Y-%m-%d %H:%M') }}</span>
+                </div>
+                <p>{{ entry.content }}</p>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
