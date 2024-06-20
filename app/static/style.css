@@ -1,0 +1,245 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #66cc99; /* Daha pastel zümrüt yeşili */
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between; /* Merkeze hizalamak için */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.header-left h1 a {
+    text-decoration: none;
+    color: #fff; /* Beyaz renk */
+}
+
+.header-left nav {
+    margin-left: 20px;
+}
+
+.header-left nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff; /* Beyaz renk */
+    font-weight: bold;
+}
+
+.header-left nav a:hover {
+    color: #ecf0f1; /* Daha açık bir beyaz renk */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right form {
+    display: flex;
+}
+
+.header-right input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+}
+
+.header-right button {
+    padding: 10px 20px;
+    background-color: #99cc99; /* Daha pastel koyu zümrüt yeşili */
+    border: none;
+    border-radius: 0 5px 5px 0;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.header-right button:hover {
+    background-color: #669966; /* Daha pastel koyu zümrüt yeşili */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 20%;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    width: 75%;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul li a:hover {
+    color: #27ae60; /* Zümrüt yeşili */
+}
+
+ul li .entry-count {
+    color: #999;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #99cc99; /* Zümrüt yeşili */
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #669966; /* Daha koyu zümrüt yeşili */
+}
+
+.post-meta {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.entry-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.entry-meta .entry-number {
+    font-weight: bold;
+}
+
+.entry-meta .entry-author {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.entry-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.entry-actions form {
+    display: inline;
+}
+
+.entry-actions button {
+    background-color: #99cc99; /* Zümrüt yeşili */
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.entry-actions button:hover {
+    background-color: #669966; /* Daha koyu zümrüt yeşili */
+}
+
+.delete-button {
+    background-color: #FF4136;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.delete-button:hover {
+    background-color: #E74C3C;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #99cc99;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #669966;
+}

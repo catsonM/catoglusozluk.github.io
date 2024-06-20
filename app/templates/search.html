@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catoglu Sozluk - Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1><a href="{{ url_for('home') }}">Catoglu Sozluk</a></h1>
+            {% if current_user.is_authenticated %}
+                <nav>
+                    <a href="{{ url_for('new_post') }}">New Post</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </nav>
+            {% else %}
+                <nav>
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                </nav>
+            {% endif %}
+        </div>
+        <div class="header-right">
+            <form action="{{ url_for('search') }}" method="GET">
+                <input type="text" name="q" placeholder="başlık, #entry, @yazar" required>
+                <button type="submit">Ara</button>
+            </form>
+        </div>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            {% if posts %}
+                <h2>Başlıklar</h2>
+                <ul>
+                    {% for post in posts %}
+                        <li><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% elif entries %}
+                <h2>Entry'ler</h2>
+                <ul>
+                    {% for entry in entries %}
+                        <li>
+                            <div class="entry-meta">
+                                <span class="entry-number">#{{ entry.sequence }}</span>
+                                <span class="entry-author">{{ entry.user.username }}</span>
+                                <span class="entry-date">{{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                            </div>
+                            <p>{{ entry.content }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Poop Başlık - Catoglu Sozluk{% endblock %}
+
+{% block content %}
+<h2>Poop Başlık</h2>
+<ul>
+    {% for post, entry_count in recent_posts %}
+        <li>
+            <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+            <span class="entry-count">({{ entry_count }})</span>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
